@@ -23,8 +23,10 @@ class Combinations:
         self.i -= 1
 
 
-def isPerfect(i, j):
-    n = data[i] + data[j]
+def isPerfect(index):
+    n = 0
+    for x in index:
+        n += data[x-1]
     sum1 = 0
     for i in range(1, n):
         if n % i == 0:
@@ -45,6 +47,6 @@ generator = generator.generate_combinations(len(data), r)
 try:
     while True:
         index = next(generator)
-        isPerfect(index[0] - 1, index[1] - 1)
+        isPerfect(index)
 except StopIteration as se:
     print('Ejecución terminada')
