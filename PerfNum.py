@@ -26,7 +26,7 @@ class Combinations:
 def isPerfect(index):
     n = 0
     for x in index:
-        n += data[x-1]
+        n += int(data[x - 1])
     sum1 = 0
     for i in range(1, n):
         if n % i == 0:
@@ -40,7 +40,14 @@ def isPerfect(index):
         pass
 
 
-data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+def filetoarray(file):
+    i = 0
+    d = f.readlines()
+    return d
+
+
+f = open("datafile", "r")
+data = filetoarray(f)
 r = int(input('Enter r = '))
 generator = Combinations(len(data), r)
 generator = generator.generate_combinations(len(data), r)
