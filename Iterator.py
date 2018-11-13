@@ -1,5 +1,4 @@
 from Node import Node
-import PerfNum
 import FileHandler
 
 class Iterator:
