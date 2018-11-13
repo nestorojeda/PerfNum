@@ -1,19 +1,21 @@
-class Iterator:
-    class Node(object):
-        def __init__(self):
-            self.info = None
-            self.nextNode = Node()
+from Node import Node
 
+
+class Iterator(object):
     front = Node()
     aux = Node()
     rear = Node()
 
-    def __init__(self,lista):
+    def __init__(self, lista):
         self.front = None
         self.aux = None
         self.rear = None
         for e in lista:
             self.insert(e)
+
+    def __iter__(self,l):
+        self.__init__(l)
+        return self
 
     def insert(self, num):
         if self.rear is None:
@@ -21,13 +23,12 @@ class Iterator:
             self.front = self.rear
         else:
             self.rear.nextNode = Node()
-            self.rear =  self.rear.nextNode
+            self.rear = self.rear.nextNode
             self.aux = self.front.nextNode
         self.rear.info = num
 
-
-    def next(self):
-        pos = {self.front.info, self.aux.info}
+    def __next__(self):
+        pos = [self.front.info, self.aux.info]
         if self.front.info != -1:
             if self.aux == self.rear:
                 if self.front.nextNode == self.rear:
@@ -40,5 +41,4 @@ class Iterator:
                     self.aux = self.front.nextNode
             else:
                 self.aux = self.aux.nextNode
-        return  pos
-
+        return pos

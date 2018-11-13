@@ -1,4 +1,4 @@
 def fileToArray(file):
-    i = 0
-    d = file.readlines()
-    return d
+    global int_list
+    with open(file) as f:
+        return {int(x) for x in f}
