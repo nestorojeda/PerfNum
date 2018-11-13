@@ -1,6 +1,7 @@
 from Node import Node
 import FileHandler
 
+
 class Iterator:
     front = Node()
     aux = Node()
@@ -23,10 +24,8 @@ class Iterator:
             self.aux = self.front.nextNode
         self.rear.info = num
 
-
     def __iter__(self):
         return self
-
 
     def __next__(self):
         self.pos = [self.front.info, self.aux.info]
@@ -43,13 +42,14 @@ class Iterator:
             else:
                 self.aux = self.aux.nextNode
         return self.pos
+
+
 def isPerfect(n):
     sum1 = 0
     for i in range(1, n):
         if n % i == 0:
             sum1 = sum1 + i
     return sum1 == n
-
 
 
 path = "datafile"
