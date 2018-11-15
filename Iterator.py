@@ -1,7 +1,5 @@
 from Node import Node
 import FileHandler
-
-
 class Iterator:
     front = Node()
     aux = Node()
@@ -36,6 +34,7 @@ class Iterator:
                     self.front.info = -1
                     self.aux = Node()
                     self.aux.info = -1
+                    raise StopIteration
                 else:
                     self.front = self.front.nextNode
                     self.aux = self.front.nextNode
@@ -50,9 +49,9 @@ def isPerfect(n):
         if n % i == 0:
             sum1 = sum1 + i
     return sum1 == n
-
-
-path = "datafile"
+print("IMPORTANTE: EL ARCHIVO DEBE TENER UN SOLO NUMERO ENTERO POR CADA LINEA DEL ARCHIVO")
+print("Introduce la ruta del archivo: ")
+path = input()
 data = FileHandler.fileToArray(path)
 myiterator = iter(data)
 sum = 0
@@ -62,9 +61,7 @@ for index in generator:
     for anIndex in index:
         sum = sum + anIndex
     if isPerfect(sum):
-        print("Hallado el numero perfecto")
-        print(sum)
-        print("Sumando las posiciones:")
-        print(index)
+        print("La combinacion de las posiciones: " + str(index) + " genera el numero perfecto: " + str(sum))
     else:
         pass
+print("Ejecucion terminada")
