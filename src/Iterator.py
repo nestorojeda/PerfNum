@@ -10,8 +10,8 @@ class Iterator:
         self.front = None
         self.aux = None
         self.rear = None
-        for e in l:
-            self.insert(e)
+        for x in range(0, len(l)):
+            self.insert(x)
 
     def insert(self, num):
         if self.rear is None:
