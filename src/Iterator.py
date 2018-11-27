@@ -1,47 +1,26 @@
-from src.Node import Node
-
-
 class Iterator:
-    front = Node()
-    aux = Node()
-    rear = Node()
+    global index
+    global size
 
-    def __init__(self, l):
-        self.front = None
-        self.aux = None
-        self.rear = None
-        for x in range(0, len(l)):
-            self.insert(x)
-
-    def insert(self, num):
-        if self.rear is None:
-            self.rear = Node()
-            self.front = self.rear
-        else:
-            self.rear.nextNode = Node()
-            self.rear = self.rear.nextNode
-            self.aux = self.front.nextNode
-        self.rear.info = num
+    def __init__(self, size, n):
+        self.size = size
+        self.index = [None] * n
+        for i in range(0, n):
+            self.index[i] = i
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        self.pos = [self.front.info, self.aux.info]
-        if self.front.info != -1:
-            if self.aux == self.rear:
-                if self.front.nextNode == self.rear:
-                    self.front = Node()
-                    self.front.info = -1
-                    self.aux = Node()
-                    self.aux.info = -1
-                    raise StopIteration
-                else:
-                    self.front = self.front.nextNode
-                    self.aux = self.front.nextNode
-            else:
-                self.aux = self.aux.nextNode
-        return self.pos
+        res = self.index.copy()
+        if self.index[0] == (self.size - len(self.index)):
+            raise StopIteration
+        else:
+            for i in range((len(self.index) - 1), -1, -1):
 
-
-
+                if self.index[i] < (self.size - len(self.index)):
+                    self.index[i] = self.index[i] + 1
+                    for j in range((i + 1), len(self.index)):
+                        self.index[j] = self.index[j - 1] + 1
+                    break
+        return res
